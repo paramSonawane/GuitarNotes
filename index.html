@@ -45,11 +45,35 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
-    function play(note){
-        const music = new Audio(`./assets/${note}`);
-        music.play()
-        music.loop = false
-    }
+        var noteURLs = {};
+        files = ['c.mp3','c-minor.mp3','d.mp3','d-minor.mp3','e.mp3','e-minor.mp3','f.mp3','f-minor.mp3','g.mp3','g-minor.mp3','a.mp3','a-minor.mp3','b.mp3','b-minor.mp3']
+
+        // fetch audio files
+        async function getUrl(file){
+            fetch(`https://paramSonawane.github.io/GuitarNotes/assets/${file}`)
+            .then((response) => {
+                reader = response.body.getReader();
+                reader.read()
+                .then((result) => {
+                    blob = new Blob([result.value], { type: 'audio/mp3' });
+                    url = window.URL.createObjectURL(blob)
+                })
+                .then(()=>{
+                    noteURLs[file] = url
+                })
+            })
+        }
+        // create a local url dict for faster notes
+        for (index in files){
+            getUrl(files[index])
+        }
+
+        function play(note){
+            const music = new Audio(noteURLs[note]);
+            console.log(noteURLs)
+            music.play()
+            music.loop = false
+        }
     </script>
 </body>
 </html>
