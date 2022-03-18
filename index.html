@@ -151,25 +151,27 @@
         }
 
          // fetch audio files
-         async function getUrl(file){
-            fetch(`./assets/${file}`)
-            .then((response) => {
-                reader = response.body.getReader();
-                reader.read()
-                .then((result) => {
-                    blob = new Blob([result.value], { type: 'audio/mp3' });
-                    url = window.URL.createObjectURL(blob)
-                })
-                .then(()=>{
-                    noteTones[file] = new Switcher(url, 10)
-                })
-            })
-        }
+        //  async function getUrl(file){
+        //     fetch(`./assets/${file}`)
+        //     .then((response) => {
+        //         reader = response.body.getReader();
+        //         reader.read()
+        //         .then((result) => {
+        //             blob = new Blob([result.value], { type: 'audio/mp3' });
+        //             url = window.URL.createObjectURL(blob)
+        //         })
+        //         .then(()=>{
+        //             noteTones[file] = new Switcher(url, 10)
+        //         })
+        //     })
+        // }
 
         for (index in files){
             file_name = files[index]
-            getUrl(file_name)
+            noteTones[file_name] = new Switcher(`./assets/${file_name}`, 10)
+            // getUrl(file_name)
         }
+        console.log(noteTones)
 
         function play(key){
             file_name = key
