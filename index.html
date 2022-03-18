@@ -10,35 +10,35 @@
 
     <title>Guitar Chords</title>
 </head>
-<body>
+<body id="body">
     <div class="d-flex justify-content-evenly flex-wrap align-items-center m-4">
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('c.mp3')">C</button>
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('c-minor.mp3')">c</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='c.mp3'>C</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='c-minor.mp3'>c</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('d.mp3')">D</button>
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('d-minor.mp3')">d</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='d.mp3'>D</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='d-minor.mp3'>d</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('e.mp3')">E</button>
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('e-minor.mp3')">e</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='e.mp3'>E</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='e-minor.mp3'>e</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('f.mp3')">F</button>
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('f-minor.mp3')">f</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='f.mp3'>F</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='f-minor.mp3'>f</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('g.mp3')">G</button>
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('g-minor.mp3')">g</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='g.mp3'>G</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='g-minor.mp3'>g</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('a.mp3')">A</button>
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('a-minor.mp3')">a</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='a.mp3'>A</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='a-minor.mp3'>a</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('b.mp3')">B</button>
-            <button type="button" class="p-4 btn btn-primary btn-lg" onclick="play('b-minor.mp3')">b</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='b.mp3'>B</button>
+            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='b-minor.mp3'>b</button>
           </div>
     </div>
 
@@ -46,6 +46,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
         var noteURLs = {};
+        var noteTones = {};
         files = ['c.mp3','c-minor.mp3','d.mp3','d-minor.mp3','e.mp3','e-minor.mp3','f.mp3','f-minor.mp3','g.mp3','g-minor.mp3','a.mp3','a-minor.mp3','b.mp3','b-minor.mp3']
 
         // fetch audio files
@@ -60,6 +61,7 @@
                 })
                 .then(()=>{
                     noteURLs[file] = url
+                    noteTones[file] = new Audio(url)
                 })
             })
         }
@@ -68,10 +70,16 @@
             getUrl(files[index])
         }
 
-        function play(note){
-            const music = new Audio(noteURLs[note]);
-            music.play()
-            music.loop = false
+        const keys = document.querySelectorAll('.key');
+        keys.forEach((key) => {
+            key.addEventListener('click', () => play(key));
+        });
+
+
+        function play(key){
+            file_name = key.dataset.note
+            noteTones[file_name].play()
+            noteTones[file_name] = new Audio(noteURLs[file_name])
         }
     </script>
 </body>
