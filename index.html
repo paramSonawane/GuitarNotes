@@ -32,88 +32,88 @@
     <div class="d-flex justify-content-around flex-wrap align-items-center m-4">
         <div class="m-2 btn-group">
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/c.mp3')">
+                    onclick="play('gc')">
                 C
             </button>
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/c-minor.mp3')">
+                    onclick="play('gcm')">
                 c
             </button>
             </div>
         <div class="m-2 btn-group">
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/d.mp3')">
+                    onclick="play('gd')">
                 D
             </button>
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/d-minor.mp3')">
+                    onclick="play('gdm')">
                 d
             </button>
             </div>
         <div class="m-2 btn-group">
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                        onclick="play('guitar/e.mp3')">
+                        onclick="play('ge')">
                 E
             </button>
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/e-minor.mp3')">
+                    onclick="play('gem')">
                 e
             </button>
             </div>
         <div class="m-2 btn-group">
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/f.mp3')">
+                    onclick="play('gf')">
                 F
             </button>
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/f-minor.mp3')">
+                    onclick="play('gfm')">
                 f
             </button>
             </div>
         <div class="m-2 btn-group">
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/g.mp3')">
+                    onclick="play('gg')">
                 G
             </button>
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/g-minor.mp3')">
+                    onclick="play('ggm')">
                 g
             </button>
             </div>
         <div class="m-2 btn-group">
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/a.mp3')">
+                    onclick="play('ga')">
                 A
             </button>
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/a-minor.mp3')">
+                    onclick="play('gam')">
                 a
             </button>
             </div>
         <div class="m-2 btn-group">
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/b.mp3')">
+                    onclick="play('gb')">
                 B
             </button>
             <button type="button" class="p-4 btn btn-primary btn-lg"
-                    onclick="play('guitar/b-minor.mp3')">
+                    onclick="play('gbm')">
                 b
             </button>
             </div>
     </div>
     <div class="d-flex justify-content-center">
-        <div class="white" onclick="play('piano/C.mp3')"></div>
-        <div class="black" onclick="play('piano/Cs.mp3')"></div>
-        <div class="white" onclick="play('piano/D.mp3')"></div>
-        <div class="black" onclick="play('piano/Ds.mp3')"></div>
-        <div class="white" onclick="play('piano/E.mp3')"></div>
-        <div class="white" onclick="play('piano/F.mp3')"></div>
-        <div class="black" onclick="play('piano/Fs.mp3')"></div>
-        <div class="white" onclick="play('piano/G.mp3')"></div>
-        <div class="black" onclick="play('piano/Gs.mp3')"></div>
-        <div class="white" onclick="play('piano/A.mp3')"></div>
-        <div class="black" onclick="play('piano/As.mp3')"></div>
-        <div class="white" onclick="play('piano/B.mp3')"></div>
+        <div class="white" onclick="play('pc')"></div>
+        <div class="black" onclick="play('pcs')"></div>
+        <div class="white" onclick="play('pd')"></div>
+        <div class="black" onclick="play('pds')"></div>
+        <div class="white" onclick="play('pe')"></div>
+        <div class="white" onclick="play('pf')"></div>
+        <div class="black" onclick="play('pfs')"></div>
+        <div class="white" onclick="play('pg')"></div>
+        <div class="black" onclick="play('pgs')"></div>
+        <div class="white" onclick="play('pa')"></div>
+        <div class="black" onclick="play('pas')"></div>
+        <div class="white" onclick="play('pb')"></div>
     </div>
 
 
@@ -122,13 +122,9 @@
     <script>
         var noteTones = {};
         files = [
-            'guitar/c.mp3', 'guitar/c-minor.mp3', 'guitar/d.mp3', 'guitar/d-minor.mp3',
-            'guitar/e.mp3', 'guitar/e-minor.mp3', 'guitar/f.mp3', 'guitar/f-minor.mp3',
-            'guitar/g.mp3', 'guitar/g-minor.mp3', 'guitar/a.mp3', 'guitar/a-minor.mp3',
-            'guitar/b.mp3', 'guitar/b-minor.mp3',
-            'piano/C.mp3', 'piano/Cs.mp3', 'piano/D.mp3', 'piano/Ds.mp3', 'piano/E.mp3',
-            'piano/F.mp3', 'piano/Fs.mp3', 'piano/G.mp3', 'piano/Gs.mp3', 'piano/A.mp3',
-            'piano/As.mp3', 'piano/B.mp3'
+            'gc', 'gcm', 'gd', 'gdm', 'ge', 'gem', 'gf', 'gfm', 'gg', 'ggm', 'ga', 'gam',
+            'gb', 'gbm',
+            'pc', 'pcs', 'pd', 'pds', 'pe', 'pf', 'pfs', 'pg', 'pgs', 'pa', 'pas', 'pb'
         ]
 
         function Channel(audio_uri) {
@@ -156,7 +152,7 @@
 
          // fetch audio files
          async function getUrl(file){
-            fetch(`https://paramSonawane.github.io/GuitarNotes/assets/${file}`)
+            fetch(`./assets/${file}`)
             .then((response) => {
                 reader = response.body.getReader();
                 reader.read()
