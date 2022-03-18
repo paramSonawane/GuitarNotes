@@ -120,7 +120,6 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
-        var noteURLs = {};
         var noteTones = {};
         files = [
             'guitar/c.mp3', 'guitar/c-minor.mp3', 'guitar/d.mp3', 'guitar/d-minor.mp3',
@@ -166,8 +165,7 @@
                     url = window.URL.createObjectURL(blob)
                 })
                 .then(()=>{
-                    noteURLs[file] = url
-                    noteTones[file] = new Switcher(url, 5)
+                    noteTones[file] = new Switcher(url, 10)
                 })
             })
         }
