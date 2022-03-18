@@ -90,9 +90,9 @@
         }
         // create a local url dict for faster notes
         for (index in files){
-            getUrl(files[index])
+            noteTones[files[index]] = new Switcher(`./assets/${files[index]}`, 5)
+            // getUrl(files[index])
         }
-
 
         function play(key){
             file_name = key
