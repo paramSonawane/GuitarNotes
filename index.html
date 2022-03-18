@@ -49,6 +49,29 @@
         var noteTones = {};
         files = ['c.mp3','c-minor.mp3','d.mp3','d-minor.mp3','e.mp3','e-minor.mp3','f.mp3','f-minor.mp3','g.mp3','g-minor.mp3','a.mp3','a-minor.mp3','b.mp3','b-minor.mp3']
 
+        function Channel(audio_uri) {
+            this.audio_uri = audio_uri;
+            this.resource = new Audio(audio_uri);
+        }
+        Channel.prototype.play = function() {
+            // Try refreshing the resource altogether
+            this.resource.play();
+        }
+
+        function Switcher(audio_uri, num) {
+            this.channels = [];
+            this.num = num;
+            this.index = 0;
+
+            for (var i = 0; i < num; i++) {
+                this.channels.push(new Channel(audio_uri));
+            }
+        }
+        Switcher.prototype.play = function() {
+            this.channels[this.index++].play();
+            this.index = this.index < this.num ? this.index : 0;
+        }
+
         // fetch audio files
         async function getUrl(file){
             fetch(`https://paramSonawane.github.io/GuitarNotes/assets/${file}`)
@@ -61,7 +84,7 @@
                 })
                 .then(()=>{
                     noteURLs[file] = url
-                    noteTones[file] = new Audio(url)
+                    noteTones[file] = new Switcher(url, 5)
                 })
             })
         }
@@ -74,8 +97,6 @@
         function play(key){
             file_name = key
             noteTones[file_name].play()
-            noteTones[file_name] = new Audio(noteURLs[file_name])
-            console.log(noteTones)
         }
     </script>
 </body>
