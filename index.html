@@ -13,32 +13,32 @@
 <body id="body">
     <div class="d-flex justify-content-evenly flex-wrap align-items-center m-4">
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='c.mp3'>C</button>
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='c-minor.mp3'>c</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='c.mp3' onclick="play('c.mp3')">C</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='c-minor.mp3' onclick="play('c-minor.mp3')">c</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='d.mp3'>D</button>
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='d-minor.mp3'>d</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='d.mp3' onclick="play('d.mp3')">D</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='d-minor.mp3' onclick="play('d-minor.mp3')">d</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='e.mp3'>E</button>
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='e-minor.mp3'>e</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='e.mp3' onclick="play('e.mp3')">E</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='e-minor.mp3' onclick="play('e-minor.mp3')">e</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='f.mp3'>F</button>
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='f-minor.mp3'>f</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='f.mp3' onclick="play('f.mp3')">F</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='f-minor.mp3' onclick="play('f-minor.mp3')">f</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='g.mp3'>G</button>
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='g-minor.mp3'>g</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='g.mp3' onclick="play('g.mp3')">G</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='g-minor.mp3' onclick="play('g-minor.mp3')">g</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='a.mp3'>A</button>
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='a-minor.mp3'>a</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='a.mp3' onclick="play('a.mp3')">A</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='a-minor.mp3' onclick="play('a-minor.mp3')">a</button>
           </div>
         <div class="m-2 btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='b.mp3'>B</button>
-            <button type="button" class="key p-4 btn btn-primary btn-lg" data-note='b-minor.mp3'>b</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='b.mp3' onclick="play('b.mp3')">B</button>
+            <button type="button" class="p-4 btn btn-primary btn-lg" data-note='b-minor.mp3' onclick="play('b-minor.mp3')">b</button>
           </div>
     </div>
 
@@ -70,16 +70,12 @@
             getUrl(files[index])
         }
 
-        const keys = document.querySelectorAll('.key');
-        keys.forEach((key) => {
-            key.addEventListener('click', () => play(key));
-        });
-
 
         function play(key){
-            file_name = key.dataset.note
+            file_name = key
             noteTones[file_name].play()
             noteTones[file_name] = new Audio(noteURLs[file_name])
+            console.log(noteTones)
         }
     </script>
 </body>
